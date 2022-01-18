@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TestMultiMapValue {
     private MultiMapValue<String, String> map;
@@ -40,36 +41,76 @@ public class TestMultiMapValue {
 
     @Test
     public void testAddTwoElements() {
-        // TODO
+        map.add("key", "yes");
+        map.add("secondKey", "nice");
+        Assertions.assertFalse(map.isEmpty());
+        Assertions.assertEquals(2, map.size());
+        Assertions.assertEquals(1, map.getValues("key").size());
+        Assertions.assertEquals(1, map.getValues("secondKey").size());
     }
 
     @Test
     public void testGetFirst() {
-        // TODO
+        List<String> list = new ArrayList<>();
+        list.add("2");
+        list.add("Hello");
+        map.addAll("key", list);
+        Assertions.assertEquals("2", map.getFirst("key"));
     }
 
     @Test
     public void testContainsKey() {
-        // TODO
+        List<String> list = new ArrayList<>();
+        list.add("2");
+        list.add("Hello");
+        map.addAll("key", list);
+        Assertions.assertTrue(map.containsKey("key"));
     }
 
     @Test
     public void testSize() {
-        // TODO
+        map.add("key", "yes");
+        map.add("key", "secondYes");
+        map.add("secondKey", "nice");
+        Assertions.assertEquals(2, map.size());
     }
 
     @Test
     public void testRemoveKey() {
-        // TODO
+        map.add("key", "yes");
+        map.add("key", "secondYes");
+        map.add("poo", "nice");
+        Assertions.assertTrue(map.containsKey("key"));
+        map.remove("key");
+        Assertions.assertFalse(map.containsKey("key"));
     }
 
     @Test
     public void testAddAllWithList() {
-        // TODO
+        List<String> list = new ArrayList<>();
+        list.add("Alex");
+        list.add("Andra");
+        list.add("Hello");
+        list.add("Marius");
+        map.addAll("key", list);
+        Assertions.assertFalse(map.isEmpty());
+        Assertions.assertEquals("Alex", map.getFirst("key"));
     }
 
     @Test
     public void testAddAllWithMultiMapValue() {
-        // TODO
+        MultiMapValue<String, String> newMap = new MultiMapValue<>();
+        List<String> list = new ArrayList<>();
+        list.add("Alex");
+        list.add("Andra");
+        list.add("Hello");
+        list.add("Marius");
+        newMap.addAll("key", list);
+        newMap.add("Alex", "Nota 10");
+        newMap.add("Nn", "America");
+        map.addAll(newMap);
+        Assertions.assertFalse(map.isEmpty());
+        Assertions.assertEquals("Alex", map.getFirst("key"));
+        Assertions.assertEquals(3, map.size());
     }
 }
