@@ -1,0 +1,3 @@
+    Am observat ca odata cu mutarea claselor in alt pachet a aparut o linie
+de import in VeterinaryTest si culoarea numelui claselor s-a schimbat in
+verde(nu stiu daca are relevanta)

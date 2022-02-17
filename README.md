@@ -1,1 +1,1 @@
-# Object-oriented-programming-Laboratories
+# Laboratories
